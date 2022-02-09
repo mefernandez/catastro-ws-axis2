@@ -16,7 +16,7 @@ import es.meh.catastro.www.RefCatDocument;
 public class ClientTest {
 
 	@Test
-	public void test() throws RemoteException {
+	public void testReferenciaCatastralDeUnaParcela() throws RemoteException {
 		Callejero_x0020_de_x0020_la_x0020_sede_x0020_electrónica_x0020_del_x0020_catastroStub stub = new Callejero_x0020_de_x0020_la_x0020_sede_x0020_electrónica_x0020_del_x0020_catastroStub();
 		RefCatDocument refCat15 = RefCatDocument.Factory.newInstance();
 		refCat15.setRefCat("0260113YJ2706S");
@@ -31,4 +31,19 @@ public class ClientTest {
 		System.out.println(consultaDNP.toString());
 	}
 
+	@Test
+	public void testReferenciaCatastralDeUnaVivienda() throws RemoteException {
+		Callejero_x0020_de_x0020_la_x0020_sede_x0020_electrónica_x0020_del_x0020_catastroStub stub = new Callejero_x0020_de_x0020_la_x0020_sede_x0020_electrónica_x0020_del_x0020_catastroStub();
+		RefCatDocument refCat15 = RefCatDocument.Factory.newInstance();
+		refCat15.setRefCat("0260113YJ2706S0002FE");
+		
+		// TEST
+		ConsultaDNPDocument result = stub.consulta_DNPRC(refCat15);
+		
+		// ASSERT
+		assertNotNull(result);
+		ConsultaDNP consultaDNP = result.getConsultaDNP();
+		assertNotNull(consultaDNP);
+		System.out.println(consultaDNP.toString());
+	}
 }
